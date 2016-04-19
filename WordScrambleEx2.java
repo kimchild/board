@@ -53,6 +53,7 @@ public class WordScrambleEx2 {
 		return strArr[i];
 	}
 	
+	
 	//주어진 문자열 str의 각 문자의 순서를 뒤섞은 다음, 새로운 문자열로 반환(Math.random()사용)
 	public static String getScrambleWord(String str) {
 		
@@ -72,22 +73,27 @@ public class WordScrambleEx2 {
 		return mStr;
 	}
 	
-	//map에 있는 값을 int[] 형태로 반환
-	public static int[] mapToIntegerArray(Map<Integer, Integer> mRet) {
+	
+	//strWord 값 섞기
+	public static String randomSwap(String strWord) {
 		
-		//중복검색 효율을 위해서 map으로 할당하고 int[]형태로 반환
-		int[] iArr = new int[mRet.size()];
-		Set<Integer> set = mRet.keySet();
-		Iterator<Integer> itr = set.iterator();
-		int i = 0;
+		String strRet   = null;
+		int strLen      = strWord.length();
+		int changeCount = 2;
 		
-		while(itr.hasNext()) {
-			
-			iArr[i++] = itr.next();
-		}
+		char[] chWord = strWord.toCharArray();
+		char[] temp   = chWord.clone();
 		
-		return iArr;
+		
+		int[] iArr = randomInt(strLen, changeCount);
+		
+		temp[iArr[1]] = chWord[iArr[0]];
+		temp[iArr[0]] = chWord[iArr[1]];
+		
+		strRet = new String(temp);
+		return strRet;
 	}
+	
 	
 	//랜덤 숫자값 구하기
 	public static int[] randomInt(int maxLength, int count) {
@@ -122,28 +128,23 @@ public class WordScrambleEx2 {
 		
 		return mapToIntegerArray(mRet);
 	}
-
 	
-	//strWord 값 섞기
-	public static String randomSwap(String strWord) {
+	
+	//map에 있는 값을 int[] 형태로 반환
+	public static int[] mapToIntegerArray(Map<Integer, Integer> mRet) {
 		
-		String strRet   = null;
-		int strLen      = strWord.length();
-		int changeCount = 2;
+		//중복검색 효율을 위해서 map으로 할당하고 int[]형태로 반환
+		int[] iArr = new int[mRet.size()];
+		Set<Integer> set = mRet.keySet();
+		Iterator<Integer> itr = set.iterator();
+		int i = 0;
 		
-		char[] chWord = strWord.toCharArray();
-		char[] temp   = chWord.clone();
+		while(itr.hasNext()) {
+			
+			iArr[i++] = itr.next();
+		}
 		
-		
-		int[] iArr = randomInt(strLen, changeCount);
-		
-		temp[iArr[1]] = chWord[iArr[0]];
-		temp[iArr[0]] = chWord[iArr[1]];
-		
-		strRet = new String(temp);
-		return strRet;
+		return iArr;
 	}
-
 	
-
 }
