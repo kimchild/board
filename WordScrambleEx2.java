@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-//´Ü¾îÀÇ Ã¶ÀÚ¸¦ ¼¯¾î³õ°í ¿ø·¡ ´Ü¾î¸¦ ¸ÂÃã.
+//ë‹¨ì–´ì˜ ì² ìë¥¼ ì„ì–´ë†“ê³  ì›ë˜ ë‹¨ì–´ë¥¼ ë§ì¶¤.
 public class WordScrambleEx2 {
 
 	
@@ -26,52 +26,56 @@ public class WordScrambleEx2 {
 			Scanner sc = new Scanner(System.in);
 			String result = sc.next().trim().toUpperCase();
 			
-			//»ç¿ëÀÚ¿¡ ÀÇÇÑ Á¾·á
+			//ì‚¬ìš©ìì— ì˜í•œ ì¢…ë£Œ
 			if( "Q".equals(result.toUpperCase()) ) {
-				System.out.println("»ç¿ëÀÚ ¿äÃ»¿¡ ÀÇÇØ Á¾·áÇÕ´Ï´Ù.");
+				System.out.println("ì‚¬ìš©ì ìš”ì²­ì— ì˜í•´ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 				System.exit(0);
 			}
 			
-			//Á¤´ä ÈÄ Á¾·á
+			//ì •ë‹µ í›„ ì¢…ë£Œ
 			if(answer.equals(result)) {
-				System.out.println("Á¤´äÀÔ´Ï´Ù.");
+				System.out.println("ì •ë‹µì…ë‹ˆë‹¤.");
 				break;
 			}
+			else {
+				System.out.println(result + " ëŠ” ì •ë‹µì´ ì•„ë‹™ë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ë³´ì„¸ìš”.");
+			}
+		
 		}
 		
 	}
 	
 	
-	//¹è¿­ strArrÀÇ ¿ä¼ÒÁßÀÇ ÇÏ³ª¸¦ ÀÓÀÇ·Î °ñ¶ó¼­ ¹İÈ¯ÇÑ´Ù.(Math.random()»ç¿ë)
+	//ë°°ì—´ strArrì˜ ìš”ì†Œì¤‘ì˜ í•˜ë‚˜ë¥¼ ì„ì˜ë¡œ ê³¨ë¼ì„œ ë°˜í™˜í•œë‹¤.(Math.random()ì‚¬ìš©)
 	public static String getAnswer(String[] strArr) {
 		
 		int i = (int) (Math.random()*strArr.length);
 		return strArr[i];
 	}
 	
-	//ÁÖ¾îÁø ¹®ÀÚ¿­ strÀÇ °¢ ¹®ÀÚÀÇ ¼ø¼­¸¦ µÚ¼¯Àº ´ÙÀ½, »õ·Î¿î ¹®ÀÚ¿­·Î ¹İÈ¯(Math.random()»ç¿ë)
+	//ì£¼ì–´ì§„ ë¬¸ìì—´ strì˜ ê° ë¬¸ìì˜ ìˆœì„œë¥¼ ë’¤ì„ì€ ë‹¤ìŒ, ìƒˆë¡œìš´ ë¬¸ìì—´ë¡œ ë°˜í™˜(Math.random()ì‚¬ìš©)
 	public static String getScrambleWord(String str) {
 		
 		String mStr = str;
 		int strLen  = mStr.length();
 		
-		//´Ü¾î±æÀÌ 2¹è¸¸Å­ ¹İº¹
+		//ë‹¨ì–´ê¸¸ì´ 2ë°°ë§Œí¼ ë°˜ë³µ
 		for(int i = 0; i < strLen*2; i++) {
 			
 			mStr = randomSwap(mStr);
 		}
 		
-		//°ª º¯°æÀÌÈÄ ÃÖÃÊ Áú¹®°ª°ú °°À»¶§´Â ´Ù½Ã ¼¯±â
+		//ê°’ ë³€ê²½ì´í›„ ìµœì´ˆ ì§ˆë¬¸ê°’ê³¼ ê°™ì„ë•ŒëŠ” ë‹¤ì‹œ ì„ê¸°
 		if(str.equals(mStr))
 			getScrambleWord(str);
 			
 		return mStr;
 	}
 	
-	//map¿¡ ÀÖ´Â °ªÀ» int[] ÇüÅÂ·Î ¹İÈ¯
+	//mapì— ìˆëŠ” ê°’ì„ int[] í˜•íƒœë¡œ ë°˜í™˜
 	public static int[] mapToIntegerArray(Map<Integer, Integer> mRet) {
 		
-		//Áßº¹°Ë»ö È¿À²À» À§ÇØ¼­ mapÀ¸·Î ÇÒ´çÇÏ°í int[]ÇüÅÂ·Î ¹İÈ¯
+		//ì¤‘ë³µê²€ìƒ‰ íš¨ìœ¨ì„ ìœ„í•´ì„œ mapìœ¼ë¡œ í• ë‹¹í•˜ê³  int[]í˜•íƒœë¡œ ë°˜í™˜
 		int[] iArr = new int[mRet.size()];
 		Set<Integer> set = mRet.keySet();
 		Iterator<Integer> itr = set.iterator();
@@ -85,10 +89,10 @@ public class WordScrambleEx2 {
 		return iArr;
 	}
 	
-	//·£´ı ¼ıÀÚ°ª ±¸ÇÏ±â
+	//ëœë¤ ìˆ«ìê°’ êµ¬í•˜ê¸°
 	public static int[] randomInt(int maxLength, int count) {
 		
-		//¿¡·¯¹æÁö
+		//ì—ëŸ¬ë°©ì§€
 		if(maxLength < count)
 			return null;
 		
@@ -97,12 +101,12 @@ public class WordScrambleEx2 {
 		int ran = 0;
 		Map<Integer, Integer> mRet = new HashMap<Integer, Integer>();
 
-		//¹è¿ï¼ö¸¸Å­ map¿¡ °ª ÇÒ´ç
+		//ë°°ìš¸ìˆ˜ë§Œí¼ mapì— ê°’ í• ë‹¹
 		for(int i = 0; i < cnt; i++) {
 			
-			//ÃÖÃÊ °ª ÀÔ·Â
+			//ìµœì´ˆ ê°’ ì…ë ¥
 			
-			//Áßº¹Ã¼Å© ¹× °ª ÀÔ·Â
+			//ì¤‘ë³µì²´í¬ ë° ê°’ ì…ë ¥
 			while(true) {
 			
 				ran = (int)(Math.random()*max);
@@ -120,7 +124,7 @@ public class WordScrambleEx2 {
 	}
 
 	
-	//strWord °ª ¼¯±â
+	//strWord ê°’ ì„ê¸°
 	public static String randomSwap(String strWord) {
 		
 		String strRet   = null;
